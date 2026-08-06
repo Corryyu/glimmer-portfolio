@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { site } from "@/config/site";
 import { capabilities, toolsAndTech } from "@/config/home";
 import { projects } from "@/config/projects";
-import { workExperience } from "@/config/resume";
+import { resumeSummary, workExperience } from "@/config/resume";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 
 export default function Home() {
@@ -67,11 +67,76 @@ export default function Home() {
               <Link to="/resume" className="btn-secondary">
                 查看简历
               </Link>
-              <Link to="/about" className="btn-ghost">
-                关于我 →
-              </Link>
+              <button
+                type="button"
+                className="btn-ghost"
+                onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                关于我 ↓
+              </button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 关于我（叙事） */}
+      <section id="about" className="container-site py-16">
+        <div className="flex items-end justify-between">
+          <h2 className="text-2xl font-bold tracking-tight text-ink">关于我</h2>
+          <Link to="/resume" className="text-sm text-brand-primary">完整简历 →</Link>
+        </div>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <div className="space-y-6">
+            <div>
+              <p className="text-sm font-semibold text-ink">简短介绍</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">{resumeSummary}</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-ink">产品方向</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                我聚焦 AI 应用与海外产品两个方向。在 AI 侧，关注如何把大模型能力收敛为结构化、可评估、有安全边界的产品体验；在海外侧，关注本地化场景适配、合规与跨团队英文协作。
+              </p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-ink">AI 产品理解</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                好的 AI 产品不是"让 AI 更像人"，而是让 AI 在受控边界内提供有价值的视角，并把判断权交还用户。这要求 Prompt 与输出结构化、结果可评估、安全可熔断、画像由用户确认。
+              </p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-ink">海外与跨文化经历</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                英国利兹大学高级计算机科学硕士（Distinction），曾在 CGTN 伦敦分部以英文参与产品协作；在 Rebell Group 负责面向意大利市场的商户平台，独立主导 20+ 模块。
+              </p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-ink">工作方式</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                从问题定义出发，先把业务流程与状态梳理清楚，再进入方案；用结构化 Prompt 与工作流提升 PRD 效率，同时坚持人工校验关键输出。
+              </p>
+            </div>
+          </div>
+          <aside className="space-y-5">
+            <div className="card p-5">
+              <p className="text-sm font-semibold text-ink">技术背景</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                计算机科学硕士，熟悉 SwiftUI、Python、SQL 与 API 基础；能直接与工程团队对齐字段、状态与异常处理，独立完成 iOS 原生开发验证。
+              </p>
+            </div>
+            <div className="card p-6">
+              <p className="text-sm font-semibold text-ink">联系方式</p>
+              <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                {site.contact.email && (
+                  <a className="text-brand-primary hover:underline" href={`mailto:${site.contact.email}`}>
+                    {site.contact.email}
+                  </a>
+                )}
+                <Link to="/resume" className="text-ink-secondary hover:text-brand-primary">
+                  查看简历 →
+                </Link>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
