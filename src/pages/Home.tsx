@@ -113,9 +113,11 @@ export default function Home() {
               <p className="mt-1.5 text-sm text-ink-secondary">{glimmer.tagline}</p>
               <div className="mt-4 flex gap-3">
                 <span className="text-sm font-medium text-brand-primary">查看完整案例 →</span>
-                <Link to={glimmer.demoPath} className="text-sm text-ink-secondary hover:text-brand-primary" onClick={(e) => e.stopPropagation()}>
-                  体验 Web App
-                </Link>
+                {glimmer.demoPath && (
+                  <Link to={glimmer.demoPath} className="text-sm text-ink-secondary hover:text-brand-primary" onClick={(e) => e.stopPropagation()}>
+                    体验 Web App
+                  </Link>
+                )}
               </div>
             </div>
           </Link>

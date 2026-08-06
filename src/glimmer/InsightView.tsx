@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGlimmerStore } from "@/glimmer/GlimmerStoreContext";
 import type { Insight, ProfileSuggestion, MoodKey } from "@/types";
 import { moodByKey } from "@/config/moods";
@@ -29,6 +30,7 @@ export function InsightView({
 }) {
   const { acceptSuggestion, rejectSuggestion, hasSuggestion, store } = useGlimmerStore();
   const moodDef = moodByKey[mood];
+  const [feedback, setFeedback] = useState<"helpful" | "not-helpful" | null>(null);
 
   const renderSuggestion = (s: ProfileSuggestion) => {
     const persisted = store.suggestions.find((x) => x.id === s.id);
@@ -92,13 +94,11 @@ export function InsightView({
       </div>
 
       <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">三个低阻力行动</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">三个低阻力行动 · 选一个试试</p>
         <ul className="mt-3 space-y-3">
           {insight.actions.map((a) => (
             <li key={a.id} className="flex gap-3">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 text-[11px] font-bold text-brand-primary">
-                {insight.actions.indexOf(a) + 1}
-              </span>
+              <span className="text-lg" aria-hidden="true">{a.emoji ?? "•"}</span>
               <div>
                 <p className="text-sm font-medium text-ink">{a.title}</p>
                 <p className="text-sm text-ink-secondary">{a.description}</p>
@@ -144,7 +144,54 @@ export function InsightView({
 
       {insight.contentMode === "crisis" && (
         <div className="rounded-2xl bg-rose-50 p-4 text-sm leading-relaxed text-rose-800 ring-1 ring-rose-200">
-          本演示不能替代紧急服务。如你正处于危机，请立即联系现实中可信任的人或当地紧急支持渠道。
+          <p className="font-semibold">本演示不能替代紧急服务。</p>
+          <p className="mt-1">如你正处于危机，请立即：</p>
+          <ul className="mt-2 space-y-1">
+            <li>· 联系现实中可信任的家人、朋友或老师</li>
+            <li>· 前往最近的医院急诊或精神卫生中心</li>
+            <li>· 拨打当地紧急求助电话（如中国大陆 120 / 110）</li>
+            <li>· 联系当地心理援助热线（请自行搜索所在地区认证热线）</li>
+          </ul>
+          <p className="mt-2 text-xs text-rose-600/80">
+            本 Demo 不提供具体热线号码，避免因号码变更或地区差异导致误导。请通过当地官方渠道获取最新支持信息。
+          </p>
+        </div>
+      )}
+
+      {/* 洞察契合度反馈 */}
+      {insight.contentMode !== "crisis" && (
+        <div className="rounded-2xl bg-canvas-soft p-4 ring-1 ring-canvas-border">
+          <p className="text-xs text-ink-tertiary">这个洞察对你有帮助吗？</p>
+          <div className="mt-2 flex gap-2">
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1 text-xs transition ${
+                feedback === "helpful"
+                  ? "bg-emerald-100 text-emerald-700 ring-1 ring-emerald-300"
+                  : "bg-white text-ink-secondary ring-1 ring-canvas-border"
+              }`}
+              onClick={() => setFeedback("helpful")}
+            >
+              👍 有帮助
+            </button>
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1 text-xs transition ${
+                feedback === "not-helpful"
+                  ? "bg-slate-200 text-slate-700 ring-1 ring-slate-300"
+                  : "bg-white text-ink-secondary ring-1 ring-canvas-border"
+              }`}
+              onClick={() => setFeedback("not-helpful")}
+            >
+              👎 不太对
+            </button>
+          </div>
+          {feedback === "helpful" && (
+            <p className="mt-2 text-xs text-ink-tertiary">谢谢，这会帮助 AI 更了解你（演示中不会上传）。</p>
+          )}
+          {feedback === "not-helpful" && (
+            <p className="mt-2 text-xs text-ink-tertiary">收到。洞察只是视角，不是结论——你有权不同意。</p>
+          )}
         </div>
       )}
 

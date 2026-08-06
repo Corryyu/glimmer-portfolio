@@ -24,6 +24,8 @@ export interface InsightAction {
   title: string;
   description: string;
   estimatedMinutes?: number;
+  /** 行动步骤 emoji，对应原 iOS 的微实验卡片图标 */
+  emoji?: string;
 }
 
 export interface BodyExercise {

@@ -19,6 +19,11 @@ export const pageMeta = {
     description:
       "微光 Glimmer：基于循证心理学理念的情绪自助与自我觉察 iOS App 的产品案例——问题、架构、流程、AI 设计与安全机制。",
   },
+  rebellCase: {
+    title: "Rebell Group 海外商户平台案例 · 郁国瑞",
+    description:
+      "面向意大利市场的海外 B2B 商户平台 0→1：入驻、合规、营销、风控一体化的脱敏化产品案例。",
+  },
   glimmer: {
     title: "微光 Glimmer · 交互式产品演示",
     description:

@@ -52,9 +52,16 @@ export default function Portfolio() {
                 <Link to={p.casePath} className="btn-primary">
                   查看完整案例
                 </Link>
-                <Link to={p.demoPath} className="btn-secondary">
-                  体验 Web App
-                </Link>
+                {p.demoPath && (
+                  <Link to={p.demoPath} className="btn-secondary">
+                    体验 Web App
+                  </Link>
+                )}
+                {p.redacted && (
+                  <span className="rounded-full bg-amber-50 px-3 py-1.5 text-xs text-amber-700 ring-1 ring-amber-200">
+                    脱敏案例
+                  </span>
+                )}
               </div>
             </div>
           </article>
@@ -62,7 +69,7 @@ export default function Portfolio() {
       </div>
 
       <p className="mt-10 text-sm text-ink-tertiary">
-        当前公开展示一个完整项目。后续项目会以同样的数据结构追加，不预留空卡片或“敬请期待”。
+        当前展示真实产品案例。后续项目会以同样的数据结构追加，不预留空卡片或"敬请期待"。
       </p>
     </div>
   );

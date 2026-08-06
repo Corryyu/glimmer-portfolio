@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { moods } from "@/config/moods";
+import { getDailyWhisper } from "@/config/dailyWhisper";
 import { generateMockInsight, insightForScenario, type CheckInInput } from "@/lib/mockInsight";
 import { useGlimmerStore } from "@/glimmer/GlimmerStoreContext";
 import { InsightView } from "@/glimmer/InsightView";
@@ -51,6 +52,8 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
   };
 
   const runScenario = (scenario: "freeze" | "crisis") => {
+    const moodForScenario: MoodKey = scenario === "freeze" ? "numb" : "down";
+    setMood(moodForScenario);
     const generated = insightForScenario(scenario);
     const input: CheckInInput =
       scenario === "freeze"
@@ -73,6 +76,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
 
   // ---- 起始入口 ----
   if (step === "start") {
+    const whisper = getDailyWhisper();
     return (
       <div className="space-y-5 pb-4">
         <div className="rounded-2xl bg-gradient-to-br from-brand-primary to-brand-secondary p-6 text-white">
@@ -87,6 +91,13 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
             开始体验
           </button>
           <p className="mt-3 text-center text-[11px] text-white/70">推荐体验路径：签到 → 洞察 → 回响 → 本我，约 3 分钟</p>
+        </div>
+
+        {/* 每日低语 DailyWhisper */}
+        <div className="rounded-2xl bg-white p-4 ring-1 ring-canvas-border">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">今日低语</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink">「{whisper.text}」</p>
+          <p className="mt-1 text-xs text-ink-tertiary">— {whisper.source}</p>
         </div>
 
         <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
