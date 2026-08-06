@@ -29,10 +29,6 @@ export const pageMeta = {
     description:
       "体验微光 Glimmer 的情绪签到、AI 洞察、回响与心理画像核心流程。本地演示，数据保存在浏览器中。",
   },
-  about: {
-    title: "关于我 · 郁国瑞 Guorui Yu",
-    description: "郁国瑞的产品方向、经历摘要、AI 产品理解与海外跨文化经历。",
-  },
   resume: {
     title: "简历 · 郁国瑞 Guorui Yu",
     description: "郁国瑞个人简历：工作经历、个人项目、教育背景与核心技能，支持文件下载。",

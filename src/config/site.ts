@@ -29,7 +29,6 @@ export const navLinks: NavLink[] = [
   { label: "首页", to: "/" },
   { label: "作品集", to: "/portfolio" },
   { label: "Glimmer Demo", to: "/glimmer" },
-  { label: "关于我", to: "/about" },
   { label: "简历", to: "/resume" },
 ];
 
@@ -37,7 +36,6 @@ export const footerLinks: NavLink[] = [
   { label: "作品集", to: "/portfolio" },
   { label: "Glimmer 项目说明", to: "/portfolio/glimmer" },
   { label: "Glimmer Demo", to: "/glimmer" },
-  { label: "关于我", to: "/about" },
   { label: "简历", to: "/resume" },
   { label: "隐私与产品边界", to: "/privacy" },
 ];

@@ -43,7 +43,7 @@ export default function Privacy() {
           <p className="mt-2 text-sm text-ink-secondary">
             通过邮箱、LinkedIn 或 GitHub 联系，不开发动态表单，不收集访客输入。
           </p>
-          <Link to="/about" className="mt-3 inline-block text-sm text-brand-primary">查看联系方式 →</Link>
+          <Link to="/" className="mt-3 inline-block text-sm text-brand-primary">返回首页查看联系方式 →</Link>
         </div>
         <div className="card p-5">
           <h3 className="text-sm font-semibold text-ink">关于 Mock AI</h3>

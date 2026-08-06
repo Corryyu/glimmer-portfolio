@@ -4,7 +4,6 @@ import Home from "@/pages/Home";
 import Portfolio from "@/pages/Portfolio";
 import GlimmerCase from "@/pages/GlimmerCase";
 import RebellCase from "@/pages/RebellCase";
-import About from "@/pages/About";
 import Resume from "@/pages/Resume";
 import Privacy from "@/pages/Privacy";
 import NotFound from "@/pages/NotFound";
@@ -30,7 +29,6 @@ export default function App() {
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="portfolio/glimmer" element={<GlimmerCase />} />
           <Route path="portfolio/rebell" element={<RebellCase />} />
-          <Route path="about" element={<About />} />
           <Route path="resume" element={<Resume />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
