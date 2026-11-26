@@ -4,6 +4,24 @@
 
 :root {
   color-scheme: light;
+  --ink: 26 28 30;
+  --ink-secondary: 100 116 139;
+  --ink-tertiary: 148 163 184;
+  --canvas: 248 250 252;
+  --canvas-soft: 241 245 249;
+  --canvas-surface: 255 255 255;
+  --canvas-border: 226 232 240;
+}
+
+.dark {
+  color-scheme: dark;
+  --ink: 241 245 249;
+  --ink-secondary: 148 163 184;
+  --ink-tertiary: 100 116 139;
+  --canvas: 11 15 25;
+  --canvas-soft: 22 29 45;
+  --canvas-surface: 17 24 39;
+  --canvas-border: 39 48 69;
 }
 
 html {
@@ -13,11 +31,12 @@ html {
 
 body {
   margin: 0;
-  background: #f8fafc;
-  color: #1a1c1e;
+  background: rgb(var(--canvas));
+  color: rgb(var(--ink));
   font-family: theme("fontFamily.sans");
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* 安全区域：底部导航与移动端键盘 */
@@ -46,7 +65,7 @@ body {
     @apply btn bg-brand-primary text-white shadow-soft hover:bg-indigo-700;
   }
   .btn-secondary {
-    @apply btn bg-white text-ink ring-1 ring-canvas-border hover:bg-canvas-soft;
+    @apply btn bg-canvas-surface text-ink ring-1 ring-canvas-border hover:bg-canvas-soft;
   }
   .btn-ghost {
     @apply btn text-ink-secondary hover:text-ink hover:bg-canvas-soft;

@@ -18,13 +18,18 @@ export default function GlimmerCase() {
   const c = glimmerCase;
   return (
     <article className="container-site py-16">
+      <div className="mb-6">
+        <Link to="/portfolio" className="text-sm text-ink-secondary hover:text-brand-primary">
+          ← 返回作品集
+        </Link>
+      </div>
       <p className="eyebrow">项目案例</p>
       <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">{c.overview.name}</h1>
       <p className="mt-3 max-w-2xl text-lg leading-relaxed text-ink-secondary">{c.overview.positioning}</p>
       <div className="mt-4 flex flex-wrap gap-2 text-xs">
         <span className="rounded-full bg-canvas-soft px-3 py-1 text-ink-secondary ring-1 ring-canvas-border">{c.overview.platform}</span>
         <span className="rounded-full bg-canvas-soft px-3 py-1 text-ink-secondary ring-1 ring-canvas-border">{c.overview.period}</span>
-        <span className="rounded-full bg-amber-50 px-3 py-1 text-amber-700 ring-1 ring-amber-200">持续开发中</span>
+        <span className="rounded-full bg-amber-50 px-3 py-1 text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:ring-amber-800/70">持续开发中</span>
       </div>
 
       {/* 1. 项目概览 */}

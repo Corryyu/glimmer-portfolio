@@ -4,7 +4,7 @@ import { site, footerLinks } from "@/config/site";
 export function Footer() {
   const { contact } = site;
   return (
-    <footer className="mt-24 border-t border-canvas-border bg-white">
+    <footer className="mt-24 border-t border-canvas-border bg-canvas-surface">
       <div className="container-site py-12">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>

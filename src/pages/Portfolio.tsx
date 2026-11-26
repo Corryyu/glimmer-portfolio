@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { projects } from "@/config/projects";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 
+const phaseBadgeStyle: Record<"live" | "developing" | "planned", string> = {
+  live: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:ring-emerald-800/70",
+  developing: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:ring-amber-800/70",
+  planned: "bg-slate-100 text-slate-700 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700",
+};
+
 export default function Portfolio() {
   useDocumentTitle("portfolio");
   return (
@@ -14,22 +20,38 @@ export default function Portfolio() {
 
       <div className="mt-10 space-y-6">
         {projects.map((p) => (
-          <article key={p.slug} className="card overflow-hidden">
+          <article key={p.slug} className="card overflow-hidden transition hover:shadow-card">
             <div
-              className="flex h-44 items-center justify-center sm:h-56"
-              style={{ background: `linear-gradient(135deg, ${p.accent}1f, ${p.accent}08)` }}
+              className="flex h-44 items-center justify-center sm:h-52"
+              style={{ background: `linear-gradient(135deg, ${p.accent}22, ${p.accent}08)` }}
             >
               <div className="text-center">
-                <span className="breath-dot animate-breathe mx-auto" style={{ width: 30, height: 30 }} aria-hidden="true" />
+                {p.slug === "glimmer" ? (
+                  <span className="breath-dot animate-breathe mx-auto block" style={{ width: 30, height: 30 }} aria-hidden="true" />
+                ) : (
+                  <div
+                    className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-500/25 bg-canvas-surface/85 text-teal-700 shadow-soft dark:text-teal-300"
+                    aria-hidden="true"
+                  >
+                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 9h18M9 21V9M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5z" />
+                    </svg>
+                  </div>
+                )}
                 <p className="mt-4 text-lg font-semibold text-ink">{p.name}</p>
               </div>
             </div>
             <div className="p-6">
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="text-xl font-bold text-ink">{p.name}</h2>
-                <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs text-amber-700 ring-1 ring-amber-200">
+                <span className={`rounded-full px-2.5 py-0.5 text-xs ring-1 ${phaseBadgeStyle[p.phase]}`}>
                   {p.status}
                 </span>
+                {p.redacted && (
+                  <span className="rounded-full bg-canvas-soft px-2.5 py-0.5 text-xs text-ink-secondary ring-1 ring-canvas-border">
+                    脱敏案例
+                  </span>
+                )}
               </div>
               <p className="mt-2 text-base text-ink-secondary">{p.tagline}</p>
 
@@ -57,11 +79,6 @@ export default function Portfolio() {
                     体验 Web App
                   </Link>
                 )}
-                {p.redacted && (
-                  <span className="rounded-full bg-amber-50 px-3 py-1.5 text-xs text-amber-700 ring-1 ring-amber-200">
-                    脱敏案例
-                  </span>
-                )}
               </div>
             </div>
           </article>
@@ -69,7 +86,7 @@ export default function Portfolio() {
       </div>
 
       <p className="mt-10 text-sm text-ink-tertiary">
-        当前展示真实产品案例。后续项目会以同样的数据结构追加，不预留空卡片或"敬请期待"。
+        当前展示真实产品案例。后续项目会以同样的数据结构追加，不预留空卡片或“敬请期待”。
       </p>
     </div>
   );

@@ -18,6 +18,11 @@ export default function RebellCase() {
   const c = rebellCase;
   return (
     <article className="container-site py-16">
+      <div className="mb-6">
+        <Link to="/portfolio" className="text-sm text-ink-secondary hover:text-brand-primary">
+          ← 返回作品集
+        </Link>
+      </div>
       <p className="eyebrow">项目案例 · 脱敏化展示</p>
       <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">{c.overview.name}</h1>
       <p className="mt-3 max-w-2xl text-lg leading-relaxed text-ink-secondary">{c.overview.positioning}</p>
@@ -25,12 +30,12 @@ export default function RebellCase() {
         <span className="rounded-full bg-canvas-soft px-3 py-1 text-ink-secondary ring-1 ring-canvas-border">{c.overview.platform}</span>
         <span className="rounded-full bg-canvas-soft px-3 py-1 text-ink-secondary ring-1 ring-canvas-border">{c.overview.period}</span>
         <span className="rounded-full bg-canvas-soft px-3 py-1 text-ink-secondary ring-1 ring-canvas-border">{c.overview.type}</span>
-        <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700 ring-1 ring-emerald-200">已上线</span>
-        <span className="rounded-full bg-amber-50 px-3 py-1 text-amber-700 ring-1 ring-amber-200">脱敏案例</span>
+        <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:ring-emerald-800/70">已上线</span>
+        <span className="rounded-full bg-amber-50 px-3 py-1 text-amber-700 ring-1 ring-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:ring-amber-800/70">脱敏案例</span>
       </div>
 
       {/* 敏感信息说明 */}
-      <p className="mt-5 rounded-xl bg-amber-50 p-4 text-xs leading-relaxed text-amber-800 ring-1 ring-amber-200">
+      <p className="mt-5 rounded-xl bg-amber-50 p-4 text-xs leading-relaxed text-amber-800 ring-1 ring-amber-200 dark:bg-amber-950/50 dark:text-amber-200 dark:ring-amber-800/60">
         ⚠ {c.overview.sensitiveNote}
       </p>
 
