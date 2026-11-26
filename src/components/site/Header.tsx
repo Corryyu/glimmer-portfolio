@@ -13,28 +13,26 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-canvas-border bg-canvas/85 backdrop-blur safe-top">
-      <div className="container-site flex h-16 items-center justify-between gap-3">
-        <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label="返回首页">
-          <span className="breath-dot animate-breathe" aria-hidden="true" />
-          <span className="text-[15px] font-semibold tracking-tight text-ink">
-            郁国瑞 <span className="text-ink-secondary">Guorui Yu</span>
-          </span>
+    <header className="sticky top-0 z-40 border-b border-canvas-border bg-canvas/90 backdrop-blur-sm safe-top">
+      <div className="container-site flex h-14 items-center justify-between gap-4">
+        <Link to="/" className="flex items-baseline gap-2 shrink-0" aria-label="返回首页">
+          <span className="text-[15px] font-semibold tracking-tight text-ink">郁国瑞</span>
+          <span className="text-xs text-ink-tertiary">Guorui Yu</span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {/* 桌面端主导航 */}
-          <nav className="hidden items-center gap-1 md:flex" aria-label="主导航">
+          <nav className="hidden items-center gap-5 md:flex" aria-label="主导航">
             {navLinks.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 end={l.to === "/"}
                 className={({ isActive }) =>
-                  `rounded-full px-3.5 py-2 text-sm font-medium transition ${
+                  `text-sm transition ${
                     isActive
-                      ? "bg-brand-primary/10 text-brand-primary"
-                      : "text-ink-secondary hover:text-ink hover:bg-canvas-soft"
+                      ? "font-semibold text-ink"
+                      : "text-ink-secondary hover:text-ink"
                   }`
                 }
               >
@@ -47,17 +45,17 @@ export function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas-border bg-canvas-surface text-ink-secondary transition hover:bg-canvas-soft hover:text-ink"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-canvas-border bg-canvas-surface text-ink-secondary transition hover:border-ink/30 hover:text-ink"
             aria-label={theme === "dark" ? "切换到浅色模式" : "切换到深色模式"}
             title={theme === "dark" ? "切换到浅色模式" : "切换到深色模式"}
           >
             {theme === "dark" ? (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4" />
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
               </svg>
             ) : (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             )}
@@ -67,7 +65,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas-border bg-canvas-surface text-ink-secondary transition hover:bg-canvas-soft hover:text-ink md:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-canvas-border bg-canvas-surface text-ink-secondary transition hover:border-ink/30 hover:text-ink md:hidden"
             aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-menu"
@@ -99,9 +97,9 @@ export function Header() {
                 to={l.to}
                 end={l.to === "/"}
                 className={({ isActive }) =>
-                  `rounded-xl px-3.5 py-2.5 text-sm font-medium transition ${
+                  `rounded-lg px-3 py-2 text-sm transition ${
                     isActive
-                      ? "bg-brand-primary/10 text-brand-primary"
+                      ? "bg-canvas-soft font-semibold text-ink"
                       : "text-ink-secondary hover:bg-canvas-soft hover:text-ink"
                   }`
                 }

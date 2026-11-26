@@ -2,70 +2,54 @@ import { Link } from "react-router-dom";
 import { projects } from "@/config/projects";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 
-const phaseBadgeStyle: Record<"live" | "developing" | "planned", string> = {
-  live: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:ring-emerald-800/70",
-  developing: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:ring-amber-800/70",
-  planned: "bg-slate-100 text-slate-700 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700",
+const phaseLabelStyle: Record<"live" | "developing" | "planned", string> = {
+  live: "text-emerald-700 dark:text-emerald-400",
+  developing: "text-amber-700 dark:text-amber-400",
+  planned: "text-ink-tertiary",
 };
 
 export default function Portfolio() {
   useDocumentTitle("portfolio");
   return (
     <div className="container-site py-16">
-      <p className="eyebrow">作品集</p>
-      <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">产品作品集</h1>
-      <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-secondary">
-        这里展示我主导的产品项目。每个项目都包含问题定义、产品架构、关键决策与当前状态，不复制完整简历。
+      <p className="text-sm font-medium text-ink-secondary">作品集</p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">产品项目</h1>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-secondary">
+        记录两个代表性项目的完整思考过程：问题定义、信息架构、产品取舍与当前状态。
       </p>
 
-      <div className="mt-10 space-y-6">
+      <div className="mt-10 divide-y divide-canvas-border border-y border-canvas-border">
         {projects.map((p) => (
-          <article key={p.slug} className="card overflow-hidden transition hover:shadow-card">
-            <div
-              className="flex h-44 items-center justify-center sm:h-52"
-              style={{ background: `linear-gradient(135deg, ${p.accent}22, ${p.accent}08)` }}
-            >
-              <div className="text-center">
-                {p.slug === "glimmer" ? (
-                  <span className="breath-dot animate-breathe mx-auto block" style={{ width: 30, height: 30 }} aria-hidden="true" />
-                ) : (
-                  <div
-                    className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-500/25 bg-canvas-surface/85 text-teal-700 shadow-soft dark:text-teal-300"
-                    aria-hidden="true"
-                  >
-                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 9h18M9 21V9M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5z" />
-                    </svg>
-                  </div>
+          <article key={p.slug} className="grid gap-8 py-10 lg:grid-cols-[1fr_1.6fr]">
+            <div>
+              <div className="flex items-center gap-2.5">
+                {p.slug === "glimmer" && (
+                  <span className="breath-dot shrink-0" style={{ width: 12, height: 12 }} aria-hidden="true" />
                 )}
-                <p className="mt-4 text-lg font-semibold text-ink">{p.name}</p>
+                <h2 className="text-2xl font-bold text-ink">{p.name}</h2>
               </div>
-            </div>
-            <div className="p-6">
-              <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-bold text-ink">{p.name}</h2>
-                <span className={`rounded-full px-2.5 py-0.5 text-xs ring-1 ${phaseBadgeStyle[p.phase]}`}>
-                  {p.status}
+              <p className="mt-2 text-sm text-ink-secondary">{p.type}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">
+                <span className={`font-medium ${phaseLabelStyle[p.phase]}`}>
+                  ● {p.status}
                 </span>
                 {p.redacted && (
-                  <span className="rounded-full bg-canvas-soft px-2.5 py-0.5 text-xs text-ink-secondary ring-1 ring-canvas-border">
+                  <span className="rounded border border-canvas-border px-2 py-0.5 text-ink-secondary">
                     脱敏案例
                   </span>
                 )}
               </div>
-              <p className="mt-2 text-base text-ink-secondary">{p.tagline}</p>
+            </div>
 
-              <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div>
+              <p className="text-lg leading-relaxed text-ink">{p.tagline}</p>
+              <dl className="mt-5 grid gap-4 border-t border-canvas-border pt-4 sm:grid-cols-2">
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-ink-tertiary">项目类型</dt>
-                  <dd className="mt-1 text-sm text-ink">{p.type}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-ink-tertiary">当前状态</dt>
+                  <dt className="text-xs text-ink-tertiary">当前状态</dt>
                   <dd className="mt-1 text-sm text-ink">{p.status}</dd>
                 </div>
-                <div className="sm:col-span-2">
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-ink-tertiary">我的职责</dt>
+                <div>
+                  <dt className="text-xs text-ink-tertiary">我的职责</dt>
                   <dd className="mt-1 text-sm text-ink">{p.role}</dd>
                 </div>
               </dl>
@@ -85,8 +69,8 @@ export default function Portfolio() {
         ))}
       </div>
 
-      <p className="mt-10 text-sm text-ink-tertiary">
-        当前展示真实产品案例。后续项目会以同样的数据结构追加，不预留空卡片或“敬请期待”。
+      <p className="mt-8 text-sm text-ink-tertiary">
+        仅收录已上线或正在实际推进的项目，不放占位卡片。
       </p>
     </div>
   );

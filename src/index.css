@@ -4,24 +4,24 @@
 
 :root {
   color-scheme: light;
-  --ink: 26 28 30;
-  --ink-secondary: 100 116 139;
-  --ink-tertiary: 148 163 184;
-  --canvas: 248 250 252;
-  --canvas-soft: 241 245 249;
+  --ink: 24 24 27;
+  --ink-secondary: 82 82 91;
+  --ink-tertiary: 113 113 122;
+  --canvas: 250 249 246;
+  --canvas-soft: 244 242 237;
   --canvas-surface: 255 255 255;
-  --canvas-border: 226 232 240;
+  --canvas-border: 228 226 220;
 }
 
 .dark {
   color-scheme: dark;
-  --ink: 241 245 249;
-  --ink-secondary: 148 163 184;
-  --ink-tertiary: 100 116 139;
-  --canvas: 11 15 25;
-  --canvas-soft: 22 29 45;
-  --canvas-surface: 17 24 39;
-  --canvas-border: 39 48 69;
+  --ink: 244 244 245;
+  --ink-secondary: 161 161 170;
+  --ink-tertiary: 113 113 122;
+  --canvas: 17 18 21;
+  --canvas-soft: 26 28 33;
+  --canvas-surface: 22 24 29;
+  --canvas-border: 42 45 54;
 }
 
 html {
@@ -51,7 +51,7 @@ body {
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid #5b50d6;
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 @layer components {
@@ -59,32 +59,32 @@ body {
     @apply mx-auto w-full max-w-site px-5 sm:px-8;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition active:scale-[0.98] disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition active:scale-[0.99] disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-brand-primary text-white shadow-soft hover:bg-indigo-700;
+    @apply btn bg-ink text-canvas hover:opacity-90;
   }
   .btn-secondary {
-    @apply btn bg-canvas-surface text-ink ring-1 ring-canvas-border hover:bg-canvas-soft;
+    @apply btn bg-canvas-surface text-ink border border-canvas-border hover:border-ink/30;
   }
   .btn-ghost {
     @apply btn text-ink-secondary hover:text-ink hover:bg-canvas-soft;
   }
   .card {
-    @apply rounded-2xl border border-canvas-border bg-canvas-surface shadow-soft;
+    @apply rounded-xl border border-canvas-border bg-canvas-surface;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-brand-secondary;
+    @apply text-xs font-medium text-ink-tertiary;
   }
 }
 
-/* 微光呼吸光点 */
+/* 微光呼吸光点（仅用于 Glimmer 产品标识与演示内） */
 .breath-dot {
   width: 14px;
   height: 14px;
   border-radius: 9999px;
   background: radial-gradient(circle at 30% 30%, #fff 0%, #fbbf24 45%, #5b50d6 100%);
-  box-shadow: 0 0 18px rgba(251, 191, 36, 0.6);
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.45);
 }
 
 /* 垂直温度计（强度选择器） */
@@ -105,7 +105,7 @@ body {
     transition-duration: 0.001ms !important;
   }
   .breath-dot {
-    box-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
   }
 }
 

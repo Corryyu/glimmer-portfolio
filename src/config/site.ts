@@ -6,11 +6,11 @@ export const site = {
   name: "郁国瑞",
   nameEn: "Guorui Yu",
   fullName: "郁国瑞 Guorui Yu",
-  tagline: "专注 AI 应用与海外产品",
+  tagline: "产品经理 · 海外产品与 AI 应用",
   intro:
-    "我专注于 AI 应用与海外产品，关注如何把复杂技术和业务流程转化为清晰、可信、可落地的产品体验。",
+    "4 年产品经验。做过面向意大利市场的 B2B 商户平台，目前在独立设计并开发 AI 情绪自助产品「微光 Glimmer」。",
   introExtended:
-    "计算机科学硕士背景，4 年产品经验。从海外消费者 App、商户平台到 AI 情绪自助产品，我习惯独立完成从问题定义、交互设计到开发验证的完整链路。",
+    "利兹大学高级计算机科学硕士，日常自己画原型、写英文 PRD，也能直接用 SwiftUI 和 Python 验证技术方案。",
   contact: {
     email: "867209633@qq.com",
     phone: "19870080745",
