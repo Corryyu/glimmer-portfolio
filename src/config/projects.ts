@@ -1,4 +1,6 @@
 /** 作品集项目配置——数据驱动，便于后续追加项目。 */
+export type ProjectPreviewKind = "glimmer" | "rebell";
+
 export interface ProjectSummary {
   slug: string;
   name: string;
@@ -10,6 +12,7 @@ export interface ProjectSummary {
   phase: "live" | "developing" | "planned";
   accent: string;
   casePath: string;
+  preview?: ProjectPreviewKind;
   /** Web App 路径；无 demo 时为空字符串，卡片隐藏「体验 Web App」按钮 */
   demoPath?: string;
   /** 标记是否为脱敏化案例（展示「脱敏案例」标签） */
@@ -27,6 +30,7 @@ export const projects: ProjectSummary[] = [
     phase: "developing",
     accent: "#5B50D6",
     casePath: "/portfolio/glimmer",
+    preview: "glimmer",
     demoPath: "/glimmer",
   },
   {
@@ -39,6 +43,7 @@ export const projects: ProjectSummary[] = [
     phase: "live",
     accent: "#0F766E",
     casePath: "/portfolio/rebell",
+    preview: "rebell",
     demoPath: "",
     redacted: true,
   },

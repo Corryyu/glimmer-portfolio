@@ -1,30 +1,49 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { Header } from "./Header";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { Link, Outlet, useLocation, useNavigationType } from "react-router-dom";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
+import "./site.css";
 
-/** 路由切换时回到顶部（HashRouter 不支持 ScrollRestoration，手动实现）。 */
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-
-/** 个人网站主框架（首页/作品集/案例/关于/简历/隐私）。Glimmer Web App 使用独立 Shell。 */
 export function SiteLayout() {
+  const { pathname, hash, key } = useLocation();
+  const navigation = useNavigationType();
+  const previousPath = useRef(pathname);
+  const main = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const target = hash && document.getElementById(hash.slice(1));
+    if (target) {
+      const smooth = previousPath.current === pathname && navigation !== "POP"
+        && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ block: "start", behavior: smooth ? "smooth" : "instant" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+    previousPath.current = pathname;
+  }, [hash, key, navigation, pathname]);
+
+  useEffect(() => {
+    if (!main.current || !("IntersectionObserver" in window)
+      || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.setAttribute("data-entered", "");
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.12 });
+
+    main.current.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [pathname]);
+
   return (
-    <div className="flex min-h-screen flex-col">
-      <ScrollToTop />
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-card"
-      >
-        跳至正文
-      </a>
+    <div className="site-frame flex min-h-screen flex-col">
+      <Link to={{ hash: "#main-content" }} className="site-skip-link">跳至正文</Link>
       <Header />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 section-anchor" ref={main} tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />
