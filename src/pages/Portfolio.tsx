@@ -9,7 +9,7 @@ export default function Portfolio() {
     <div className="container-site portfolio-page">
       <div className="portfolio-intro">
         <h1>作品集</h1>
-        <p>从 AI 情绪自助到海外商户平台。可以先点看项目的关键流程，再读完整复盘。</p>
+        <p>体验券商 App 的下单纠错与换机验证，再看每一步的设计取舍。也可以浏览微光 Glimmer 和海外商户平台案例。</p>
       </div>
 
       <div className="project-grid">

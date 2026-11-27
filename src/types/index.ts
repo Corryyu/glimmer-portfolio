@@ -95,10 +95,11 @@ export interface NavLink {
 }
 
 export interface WorkExperience {
-  company: string;
+  company?: string;
   role: string;
   period: string;
   bullets: string[];
+  cases?: NavLink[];
 }
 
 export interface Education {

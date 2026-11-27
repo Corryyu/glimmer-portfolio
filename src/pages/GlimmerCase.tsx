@@ -1,9 +1,12 @@
-import { CaseChapter, CaseStudy, DecisionList } from "@/components/site/CaseStudy";
 import { Link } from "react-router-dom";
+import { CaseChapter, CaseStudy, DecisionList } from "@/components/site/CaseStudy";
+import { ProfileDecisionDemo } from "@/components/site/ProfileDecisionDemo";
 import { glimmerCase, statusLabel, statusStyle } from "@/config/glimmerCase";
+import { glimmerProfileDecisionId } from "@/config/projects";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 
 const chapters = {
+  [glimmerProfileDecisionId]: "画像确认的取舍",
   overview: "项目概览",
   "user-problems": "用户问题",
   value: "价值主张",
@@ -30,7 +33,25 @@ export default function GlimmerCase() {
       chapters={chapters}
       demoPath="/glimmer"
     >
-
+      <CaseChapter id={glimmerProfileDecisionId} title={chapters[glimmerProfileDecisionId]}>
+        <div className="case-profile-decision">
+          <ProfileDecisionDemo />
+          <dl className="profile-decision-notes">
+            <div>
+              <dt>为什么这样选</dt>
+              <dd>一次签到反映的是当时的感受。我让用户看过依据，再决定要不要把它变成长期记录。</dd>
+            </div>
+            <div>
+              <dt>我接受的代价</dt>
+              <dd>多了一次操作，画像积累得更慢。用户可以看清 AI 记住了什么，也能当场拒绝。</dd>
+            </div>
+            <div>
+              <dt>我怎么验证</dt>
+              <dd>用同一条示例检查确认和拒绝后的画像状态。下一步验证用户能否说清这条记录会怎么用。</dd>
+            </div>
+          </dl>
+        </div>
+      </CaseChapter>
       <CaseChapter id="overview" title={chapters.overview}>
         <p className="mt-4 max-w-prose text-sm leading-relaxed text-ink-secondary">{c.overview.summary}</p>
         <div className="mt-5 flex flex-wrap gap-2">

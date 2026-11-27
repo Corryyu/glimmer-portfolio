@@ -6,9 +6,10 @@ export const site = {
   name: "郁国瑞",
   nameEn: "Guorui Yu",
   fullName: "郁国瑞 Guorui Yu",
-  tagline: "产品经理 · 海外产品与 AI 应用",
+  role: "C 端产品经理",
+  tagline: "金融 App · AI 应用",
   intro:
-    "4 年产品经验。做过面向意大利市场的 B2B 商户平台，目前在独立设计并开发 AI 情绪自助产品「微光 Glimmer」。",
+    "目前做面向个人投资者的金融 App 产品设计，也在独立设计和开发 AI 情绪自助产品「微光 Glimmer」。",
   introExtended:
     "利兹大学高级计算机科学硕士，日常自己画原型、写英文 PRD，也能直接用 SwiftUI 和 Python 验证技术方案。",
   contact: {

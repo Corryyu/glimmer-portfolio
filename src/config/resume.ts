@@ -1,7 +1,18 @@
 import type { WorkExperience, Education, SkillGroup } from "@/types";
+import { brokerProjects } from "./projects";
 
-/** 工作经历 — 来自最新简历，未删改、未伪造。 */
+/** 公开展示的工作经历，按任职时间倒序排列。 */
 export const workExperience: WorkExperience[] = [
+  {
+    role: "金融 App 产品经理",
+    period: "现职",
+    bullets: [
+      "设计港股、美股和沪深市场的下单交互，将每手股数、交易时段和账户购买力等规则写入表单提示、纠错动作与验收用例，完成交易模块 PRD 定稿。",
+      "设计登录、资产查看与下单授权的分层方案，梳理换机验证和开户、绑户分流，在交互原型中覆盖登录与交易解锁的主要状态。",
+      "梳理选股指标的数据源、计算口径和异常样例，输出字段对照及复测记录，为研发实现与数据验收提供依据。",
+    ],
+    cases: Object.values(brokerProjects).map((project) => ({ label: project.name, to: project.casePath })),
+  },
   {
     company: "小慕（深圳）科技有限公司 / Rebell Group",
     role: "产品经理｜海外产品",
@@ -65,8 +76,10 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "海外与合规",
+    title: "金融与合规",
     items: [
+      "证券交易与账户授权",
+      "行情与选股指标口径",
       "英文 PRD 与跨团队协作",
       "海外场景适配",
       "KYC/KYB",
@@ -82,4 +95,4 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 export const resumeSummary =
-  "4 年产品经验，计算机科学硕士背景，聚焦海外产品、AI 应用与支付/商户平台。具备意大利市场消费者 App、商户平台、管理后台及跨境电商 ERP 的 0-1 与迭代经验，熟悉海外市场需求分析、KYC/KYB、商户 Onboarding、权限审计、API 集成及英文跨团队协作。能够将大模型用于需求拆解、Prompt/工作流设计、输出评估与测试自动化，并独立完成 AI 情绪洞察 iOS 产品从场景定义、交互设计到开发验证。";
+  "4 年产品经验，目前做面向个人投资者的券商 App，覆盖证券交易、账户安全与选股数据。将交易规则转化为用户能操作的原型，以及研发可执行的 PRD 和验收用例。曾负责意大利市场的消费者 App 和商户平台，也独立设计和开发了 AI 情绪自助产品「微光 Glimmer」。计算机科学硕士，英语可作为工作语言。";

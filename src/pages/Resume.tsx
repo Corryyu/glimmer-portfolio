@@ -21,7 +21,7 @@ export default function Resume() {
         <div>
           <p className="eyebrow">简历</p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">{site.fullName}</h1>
-          <p className="mt-2 text-base text-ink-secondary">产品经理｜海外产品 · AI 应用</p>
+          <p className="mt-2 text-base text-ink-secondary">{site.role} · {site.tagline}</p>
           <p className="mt-1 text-sm text-ink-tertiary">
             {site.contact.email} ｜ 英国利兹大学 高级计算机科学硕士 ｜ 英语可作为工作语言
           </p>
@@ -51,12 +51,12 @@ export default function Resume() {
         <h2 className="text-lg font-semibold text-ink">工作经历</h2>
         <div className="mt-5 space-y-6">
           {workExperience.map((w) => (
-            <div key={w.company} className="card p-5">
+            <div key={w.company ?? w.role} className="card p-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <p className="font-semibold text-ink">{w.company}</p>
+                <h3 className="font-semibold text-ink">{w.company ?? w.role}</h3>
                 <span className="text-sm text-ink-tertiary">{w.period}</span>
               </div>
-              <p className="text-sm text-brand-primary">{w.role}</p>
+              {w.company && <p className="text-sm text-brand-primary">{w.role}</p>}
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-secondary">
                 {w.bullets.map((b, i) => (
                   <li key={i} className="flex gap-2">
@@ -65,6 +65,13 @@ export default function Resume() {
                   </li>
                 ))}
               </ul>
+              {w.cases && (
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                  {w.cases.map((item) => (
+                    <Link key={item.to} to={item.to} className="site-text-link text-sm">{item.label} →</Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -1,3 +1,5 @@
+import { site } from "./site";
+
 /** 页面级 SEO：动态 document.title 与 meta description。 */
 export interface PageMeta {
   title: string;
@@ -6,13 +8,20 @@ export interface PageMeta {
 
 export const pageMeta = {
   home: {
-    title: "郁国瑞 Guorui Yu · AI 应用与海外产品作品集",
-    description:
-      "郁国瑞，专注 AI 应用与海外产品。查看产品作品集，体验微光 Glimmer 情绪自助与自我觉察产品演示。",
+    title: `${site.fullName} · ${site.role}`,
+    description: `${site.name}，${site.role}。${site.intro}查看网页简历与代表案例。`,
   },
   portfolio: {
     title: "作品集 · 郁国瑞 Guorui Yu",
-    description: "产品作品集总览：微光 Glimmer AI 情绪自助产品的定义、设计与产品决策。",
+    description: "郁国瑞的产品作品集。体验券商 App 的下单纠错、换机验证，以及微光 Glimmer 与海外商户平台。",
+  },
+  tradeOrderCase: {
+    title: "券商 App 下单纠错 · 郁国瑞",
+    description: "体验券商 App 的数量校验和行内纠错，了解整手交易规则如何进入交互原型、需求和验收。",
+  },
+  accountAccessCase: {
+    title: "换机登录与交易授权 · 郁国瑞",
+    description: "比较原设备与新设备的模拟流程，体验券商 App 如何安排登录、资产查看和下单时的验证。",
   },
   glimmerCase: {
     title: "微光 Glimmer 项目案例 · 郁国瑞",
@@ -31,7 +40,7 @@ export const pageMeta = {
   },
   resume: {
     title: "简历 · 郁国瑞 Guorui Yu",
-    description: "郁国瑞个人简历：工作经历、个人项目、教育背景与核心技能，支持文件下载。",
+    description: `${site.name}的网页简历。查看 C 端金融 App 工作经历、微光 Glimmer 项目与教育背景。`,
   },
   privacy: {
     title: "隐私与产品边界说明 · 郁国瑞",

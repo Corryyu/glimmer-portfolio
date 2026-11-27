@@ -1,5 +1,5 @@
 import { useId, useState, type KeyboardEvent } from "react";
-import type { ProjectPreviewKind } from "@/config/projects";
+import type { BrokerCaseKind, ProjectPreviewKind } from "@/config/projects";
 import { ExampleInsight, MoodOptions, type PreviewMood } from "./GlimmerPreview";
 
 const glimmerTabs = ["情绪签到", "即时洞察", "回响"];
@@ -57,7 +57,7 @@ function RebellScene({ index }: { index: number }) {
   );
 }
 
-export function ProjectPreview({ kind }: { kind: ProjectPreviewKind }) {
+function TabbedProjectPreview({ kind }: { kind: "glimmer" | "rebell" }) {
   const isGlimmer = kind === "glimmer";
   const [active, setActive] = useState(isGlimmer ? 2 : 0);
   const [mood, setMood] = useState<PreviewMood>("peace");
@@ -120,4 +120,33 @@ export function ProjectPreview({ kind }: { kind: ProjectPreviewKind }) {
       ))}
     </div>
   );
+}
+
+function BrokerProjectPreview({ kind }: { kind: BrokerCaseKind }) {
+  const trade = kind === "trade-order";
+  return (
+    <div className={`project-preview broker-thumbnail broker-thumbnail--${kind}`} aria-hidden="true">
+      <div className="broker-thumbnail-panel">
+        <p className="broker-thumbnail-caption">{trade ? "每手 100 股" : "新设备登录"}</p>
+        {trade ? (
+          <div className="broker-thumbnail-shares">
+            <div><span>用户输入</span><strong>150 <small>股</small></strong></div>
+            <span>→</span>
+            <div><span>可选纠正</span><strong>100 <small>股</small></strong></div>
+          </div>
+        ) : (
+          <ol className="broker-thumbnail-steps">
+            <li>通行密钥</li>
+            <li>设备确认</li>
+            <li>查看资产</li>
+          </ol>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function ProjectPreview({ kind }: { kind: ProjectPreviewKind }) {
+  if (kind === "glimmer" || kind === "rebell") return <TabbedProjectPreview kind={kind} />;
+  return <BrokerProjectPreview kind={kind} />;
 }

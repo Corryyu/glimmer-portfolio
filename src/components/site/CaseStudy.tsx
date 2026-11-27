@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import type { ProjectPreviewKind } from "@/config/projects";
 import { ProjectPreview } from "./ProjectPreview";
 
-export function CaseStudy({ title, description, facts, kind, chapters, demoPath, note, children }: {
+export function CaseStudy({ title, description, facts, kind, chapters, demoPath, heroPreview, note, children }: {
   title: string;
   description: string;
   facts: string[];
   kind: ProjectPreviewKind;
   chapters: Record<string, string>;
   demoPath?: string;
+  heroPreview?: ReactNode;
   note?: string;
   children: ReactNode;
 }) {
@@ -79,7 +80,7 @@ export function CaseStudy({ title, description, facts, kind, chapters, demoPath,
           <ul className="case-facts">{facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
           {demoPath && <Link to={demoPath} className="site-button site-button--primary">体验完整 Demo</Link>}
         </div>
-        <ProjectPreview kind={kind} />
+        {heroPreview ?? <ProjectPreview kind={kind} />}
       </header>
       {note && <p className="case-note">{note}</p>}
 

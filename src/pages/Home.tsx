@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { GlimmerFeature } from "@/components/site/GlimmerPreview";
 import { ProjectCard } from "@/components/site/ProjectCard";
+import { TradeOrderDemo } from "@/components/site/TradeOrderDemo";
 import { capabilities, toolCategories } from "@/config/home";
-import { projects } from "@/config/projects";
+import { brokerProjects, projects } from "@/config/projects";
 import { workExperience } from "@/config/resume";
 import { site } from "@/config/site";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
@@ -32,16 +32,16 @@ export default function Home() {
         <div className="hero-copy">
           <p className="hero-role">{site.tagline}</p>
           <h1 id="home-title">
-            把复杂问题，
-            <span>做成好用的产品。</span>
+            {site.name}{" "}
+            <span>{site.role}</span>
           </h1>
           <p className="hero-intro">{site.intro}</p>
           <div className="hero-actions">
-            <Link to={{ hash: "#selected-work" }} className="site-button site-button--primary">看精选项目</Link>
-            <Link to="/glimmer" className="site-button">体验 Glimmer Demo</Link>
+            <Link to="/resume" className="site-button site-button--primary">查看简历</Link>
+            <Link to={brokerProjects["trade-order"].casePath} className="site-button">看下单案例</Link>
           </div>
         </div>
-        <GlimmerFeature />
+        <TradeOrderDemo />
       </section>
 
       <section id="selected-work" className="home-section section-anchor" tabIndex={-1} aria-labelledby="work-title">
@@ -72,11 +72,11 @@ export default function Home() {
           </div>
           <div className="experience-list">
             {workExperience.map((work, index) => (
-              <details key={work.company} className="site-disclosure" open={index === 0}>
+              <details key={work.company ?? work.role} className="site-disclosure" open={index === 0}>
                 <summary>
                   <span>
-                    <span className="experience-company">{work.company}</span>
-                    <span className="experience-role">{work.role} · {work.period}</span>
+                    <span className="experience-company">{work.company ?? work.role}</span>
+                    <span className="experience-role">{work.company ? `${work.role} · ${work.period}` : work.period}</span>
                   </span>
                   <span className="disclosure-mark" aria-hidden="true" />
                 </summary>
