@@ -78,16 +78,16 @@ export function EchoTab() {
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-semibold text-ink">回响 Echo</h1>
         <div className="flex items-center gap-2">
-          <button type="button" className="h-8 w-8 rounded-full bg-white text-ink ring-1 ring-canvas-border" onClick={() => shiftMonth(-1)} aria-label="上个月">‹</button>
+          <button type="button" className="h-8 w-8 rounded-full bg-canvas-surface text-ink ring-1 ring-canvas-border" onClick={() => shiftMonth(-1)} aria-label="上个月">‹</button>
           <span className="min-w-[84px] text-center text-sm font-medium text-ink">
             {cursor.year}年{cursor.month + 1}月
           </span>
-          <button type="button" className="h-8 w-8 rounded-full bg-white text-ink ring-1 ring-canvas-border" onClick={() => shiftMonth(1)} aria-label="下个月">›</button>
+          <button type="button" className="h-8 w-8 rounded-full bg-canvas-surface text-ink ring-1 ring-canvas-border" onClick={() => shiftMonth(1)} aria-label="下个月">›</button>
         </div>
       </div>
 
       {/* 热力图 */}
-      <div className="rounded-2xl bg-white p-4 ring-1 ring-canvas-border">
+      <div className="rounded-2xl bg-canvas-surface p-4 ring-1 ring-canvas-border">
         <div className="mb-2 grid grid-cols-7 text-center text-[11px] text-ink-tertiary">
           {weekdayLabels.map((w) => (
             <span key={w}>{w}</span>
@@ -141,7 +141,7 @@ export function EchoTab() {
 
       {/* 选中日期详情 */}
       {selectedDay && (
-        <div className="rounded-2xl bg-white p-4 ring-1 ring-canvas-border">
+        <div className="rounded-2xl bg-canvas-surface p-4 ring-1 ring-canvas-border">
           <p className="text-sm font-semibold text-ink">
             {selectedDay.getMonth() + 1}月{selectedDay.getDate()}日
           </p>

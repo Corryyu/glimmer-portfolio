@@ -1,14 +1,13 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { Suspense, useEffect, useLayoutEffect, useRef, type RefObject } from "react";
 import { Link, Outlet, useLocation, useNavigationType } from "react-router-dom";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import "./site.css";
 
-export function SiteLayout() {
+function RouteContent({ main }: { main: RefObject<HTMLElement> }) {
   const { pathname, hash, key } = useLocation();
   const navigation = useNavigationType();
   const previousPath = useRef(pathname);
-  const main = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const target = hash && document.getElementById(hash.slice(1));
@@ -37,14 +36,31 @@ export function SiteLayout() {
 
     main.current.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, [pathname]);
+  }, [main, pathname]);
+
+  return <Outlet />;
+}
+
+function RouteFallback() {
+  return (
+    <div className="container-site flex min-h-[50vh] items-center justify-center gap-3 py-20 text-sm text-ink-secondary" role="status">
+      <span className="breath-dot animate-breathe" aria-hidden="true" />
+      页面加载中…
+    </div>
+  );
+}
+
+export function SiteLayout() {
+  const main = useRef<HTMLElement>(null);
 
   return (
     <div className="site-frame flex min-h-screen flex-col">
       <Link to={{ hash: "#main-content" }} className="site-skip-link">跳至正文</Link>
       <Header />
       <main id="main-content" className="flex-1 section-anchor" ref={main} tabIndex={-1}>
-        <Outlet />
+        <Suspense fallback={<RouteFallback />}>
+          <RouteContent main={main} />
+        </Suspense>
       </main>
       <Footer />
     </div>

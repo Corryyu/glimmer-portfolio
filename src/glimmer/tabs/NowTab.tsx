@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { moods } from "@/config/moods";
 import { getDailyWhisper } from "@/config/dailyWhisper";
 import { generateMockInsight, insightForScenario, type CheckInInput } from "@/lib/mockInsight";
@@ -94,14 +93,14 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
         </div>
 
         {/* 每日低语 DailyWhisper */}
-        <div className="rounded-2xl bg-white p-4 ring-1 ring-canvas-border">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">今日低语</p>
+        <div className="rounded-2xl bg-canvas-surface p-4 ring-1 ring-canvas-border">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">今日低语</p>
           <p className="mt-2 text-sm leading-relaxed text-ink">「{whisper.text}」</p>
           <p className="mt-1 text-xs text-ink-tertiary">— {whisper.source}</p>
         </div>
 
-        <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">快捷体验场景</p>
+        <div className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">快捷体验场景</p>
           <p className="mt-1 text-xs text-ink-tertiary">无需逐步签到，直接查看特定安全路径的洞察。</p>
           <div className="mt-3 space-y-2">
             <button type="button" className="flex w-full items-center justify-between rounded-xl bg-canvas-soft px-4 py-3 text-left ring-1 ring-canvas-border" onClick={() => runScenario("freeze")}>
@@ -120,10 +119,6 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
             </button>
           </div>
         </div>
-
-        <Link to="/portfolio/glimmer" className="block rounded-2xl bg-white p-4 text-center text-sm text-ink-secondary ring-1 ring-canvas-border hover:text-brand-primary">
-          查看项目案例说明 →
-        </Link>
       </div>
     );
   }
@@ -157,7 +152,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
                   setMood(m.key);
                   setStep("intensity");
                 }}
-                className="flex items-center gap-3 rounded-2xl bg-white p-4 text-left ring-1 ring-canvas-border transition hover:-translate-y-0.5"
+                className="flex items-center gap-3 rounded-2xl bg-canvas-surface p-4 text-left ring-1 ring-canvas-border transition hover:-translate-y-0.5"
                 style={{ boxShadow: `0 8px 20px ${m.color}1a` }}
               >
                 <span className="text-2xl" aria-hidden="true">{m.emoji}</span>
@@ -187,7 +182,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
                   type="button"
                   onClick={() => setIntensity(v)}
                   className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold transition ${
-                    intensity === v ? "bg-brand-primary text-white shadow-soft" : "bg-white text-ink ring-1 ring-canvas-border"
+                    intensity === v ? "bg-brand-primary text-white shadow-soft" : "bg-canvas-surface text-ink ring-1 ring-canvas-border"
                   }`}
                   aria-label={`强度 ${v} ${intensityLabels[v]}`}
                 >
@@ -200,7 +195,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
             </div>
             <div className="flex flex-col-reverse justify-around py-2 text-xs text-ink-secondary">
               {[1, 2, 3, 4, 5].map((v) => (
-                <span key={v} className={intensity === v ? "font-semibold text-brand-primary" : ""}>{intensityLabels[v]}</span>
+                <span key={v} className={intensity === v ? "font-semibold text-[color:var(--site-accent)]" : ""}>{intensityLabels[v]}</span>
               ))}
             </div>
           </div>
@@ -229,7 +224,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
                     setTriggers((prev) => (active ? prev.filter((x) => x !== t) : [...prev, t]))
                   }
                   className={`rounded-full px-3.5 py-2 text-sm transition ${
-                    active ? "bg-brand-primary text-white" : "bg-white text-ink-secondary ring-1 ring-canvas-border"
+                    active ? "bg-brand-primary text-white" : "bg-canvas-surface text-ink-secondary ring-1 ring-canvas-border"
                   }`}
                 >
                   {t}
@@ -257,7 +252,7 @@ export function NowTab({ onJumpEcho }: { onJumpEcho: () => void }) {
           <h2 className="text-lg font-semibold text-ink">想说点什么吗？</h2>
           <p className="mt-1 text-sm text-ink-secondary">可选。这是情绪签到中的文字补充，不是聊天。</p>
           <textarea
-            className="mt-4 h-28 w-full resize-none rounded-2xl bg-white p-4 text-sm text-ink ring-1 ring-canvas-border focus:outline-none focus:ring-2 focus:ring-brand-primary"
+            className="mt-4 h-28 w-full resize-none rounded-2xl bg-canvas-surface p-4 text-sm text-ink ring-1 ring-canvas-border focus:outline-none focus:ring-2 focus:ring-brand-primary"
             placeholder="（可选）写下此刻的想法……"
             value={note}
             onChange={(e) => setNote(e.target.value)}

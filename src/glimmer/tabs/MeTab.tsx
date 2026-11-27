@@ -49,14 +49,14 @@ export function MeTab() {
 
       {/* 待确认建议 */}
       {pending.length > 0 && (
-        <div className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-200">
-          <p className="text-sm font-semibold text-amber-800">有 {pending.length} 条画像建议待你确认</p>
-          <p className="mt-1 text-xs text-amber-700/80">AI 不会自动写入画像，请查看依据后决定。</p>
+        <div className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-200 dark:bg-amber-950/50 dark:ring-amber-800/60">
+          <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">有 {pending.length} 条画像建议待你确认</p>
+          <p className="mt-1 text-xs text-amber-700/80 dark:text-amber-300">AI 不会自动写入画像，请查看依据后决定。</p>
           <div className="mt-3 space-y-3">
             {pending.map((s) => {
               const meta = dimMeta[s.dimension];
               return (
-                <div key={s.id} className="rounded-xl bg-white p-3 ring-1 ring-canvas-border">
+                <div key={s.id} className="rounded-xl bg-canvas-surface p-3 ring-1 ring-canvas-border">
                   <div className="flex items-center justify-between">
                     <span className="rounded-full px-2 py-0.5 text-[11px] text-white" style={{ background: meta.color }}>
                       {meta.name} {meta.enName}
@@ -70,7 +70,7 @@ export function MeTab() {
                     <button type="button" className="rounded-full bg-brand-primary px-3 py-1 text-xs text-white" onClick={() => acceptSuggestion(s.id)}>
                       确认写入
                     </button>
-                    <button type="button" className="rounded-full bg-white px-3 py-1 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => rejectSuggestion(s.id)}>
+                    <button type="button" className="rounded-full bg-canvas-surface px-3 py-1 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => rejectSuggestion(s.id)}>
                       拒绝
                     </button>
                   </div>
@@ -83,12 +83,12 @@ export function MeTab() {
 
       {/* 诱因排行：滋养 vs 消耗 */}
       {store.checkIns.length > 0 && (
-        <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
+        <div className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
           <h2 className="text-base font-semibold text-ink">诱因景观</h2>
           <p className="mt-1 text-xs text-ink-tertiary">基于签到记录，滋养性与消耗性诱因的频率对比。</p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div>
-              <p className="text-xs font-semibold text-emerald-700">🌱 滋养性诱因</p>
+              <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">🌱 滋养性诱因</p>
               {triggerStats.nourishing.length === 0 ? (
                 <p className="mt-2 text-xs text-ink-tertiary">暂无数据</p>
               ) : (
@@ -106,7 +106,7 @@ export function MeTab() {
               )}
             </div>
             <div>
-              <p className="text-xs font-semibold text-violet-700">⚡ 消耗性诱因</p>
+              <p className="text-xs font-semibold text-violet-700 dark:text-violet-300">⚡ 消耗性诱因</p>
               {triggerStats.draining.length === 0 ? (
                 <p className="mt-2 text-xs text-ink-tertiary">暂无数据</p>
               ) : (
@@ -132,7 +132,7 @@ export function MeTab() {
         const meta = dimMeta[dim];
         const items = store.profile.filter((p) => p.dimension === dim);
         return (
-          <div key={dim} className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
+          <div key={dim} className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: meta.color }} aria-hidden="true" />
               <h2 className="text-base font-semibold text-ink">{meta.name} <span className="text-xs font-normal text-ink-tertiary">{meta.enName}</span></h2>
@@ -148,7 +148,7 @@ export function MeTab() {
                   <li key={p.id} className="rounded-xl bg-canvas-soft p-3">
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-ink">{p.title}</p>
-                      <span className="rounded-full bg-white px-2 py-0.5 text-[10px] text-ink-tertiary ring-1 ring-canvas-border">
+                      <span className="rounded-full bg-canvas-surface px-2 py-0.5 text-[10px] text-ink-tertiary ring-1 ring-canvas-border">
                         {p.id.startsWith("profile-s") ? "AI 建议 · 已确认" : "手动添加"}
                       </span>
                     </div>
@@ -170,7 +170,7 @@ export function MeTab() {
               <button type="button" className="rounded-full bg-rose-500 px-4 py-1.5 text-xs text-white" onClick={() => { resetDemo(); setConfirmReset(false); }}>
                 确认重置
               </button>
-              <button type="button" className="rounded-full bg-white px-4 py-1.5 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => setConfirmReset(false)}>
+              <button type="button" className="rounded-full bg-canvas-surface px-4 py-1.5 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => setConfirmReset(false)}>
                 取消
               </button>
             </div>

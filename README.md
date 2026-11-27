@@ -29,7 +29,7 @@
 | `/#/` | 个人主页（两个主入口 + 查看简历） |
 | `/#/portfolio` | 作品集总览 |
 | `/#/portfolio/glimmer` | 微光 Glimmer 项目案例（12 节） |
-| `/#/glimmer` | 微光 Glimmer Web App（独立 Shell） |
+| `/#/glimmer` | 微光 Glimmer Web App，共用网站顶栏，包含此刻、回响与本我三个产品内页签 |
 | `/#/about` | 关于我 |
 | `/#/resume` | 网页简历 + 文件下载 |
 | `/#/privacy` | 隐私与产品边界说明 |

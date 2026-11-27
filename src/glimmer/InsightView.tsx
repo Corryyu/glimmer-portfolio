@@ -40,7 +40,7 @@ export function InsightView({
     return (
       <div key={s.id} className="rounded-xl border border-canvas-border bg-canvas-soft p-4">
         <div className="flex items-center justify-between">
-          <span className="rounded-full bg-white px-2 py-0.5 text-[11px] text-ink-secondary ring-1 ring-canvas-border">
+          <span className="rounded-full bg-canvas-surface px-2 py-0.5 text-[11px] text-ink-secondary ring-1 ring-canvas-border">
             {dimLabel}
           </span>
           <span className="text-[11px] text-ink-tertiary">AI 画像建议</span>
@@ -60,7 +60,7 @@ export function InsightView({
               <button type="button" className="rounded-full bg-brand-primary px-3 py-1 text-xs text-white" onClick={() => acceptSuggestion(s.id)}>
                 确认写入
               </button>
-              <button type="button" className="rounded-full bg-white px-3 py-1 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => rejectSuggestion(s.id)}>
+              <button type="button" className="rounded-full bg-canvas-surface px-3 py-1 text-xs text-ink-secondary ring-1 ring-canvas-border" onClick={() => rejectSuggestion(s.id)}>
                 拒绝
               </button>
             </>
@@ -88,13 +88,13 @@ export function InsightView({
         <p className="mt-1 text-xs text-ink-tertiary">{insight.perspective}</p>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">核心洞察</p>
+      <div className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">核心洞察</p>
         <p className="mt-2 text-sm leading-relaxed text-ink">{insight.insight}</p>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">三个低阻力行动 · 选一个试试</p>
+      <div className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">三个低阻力行动 · 选一个试试</p>
         <ul className="mt-3 space-y-3">
           {insight.actions.map((a) => (
             <li key={a.id} className="flex gap-3">
@@ -110,8 +110,8 @@ export function InsightView({
       </div>
 
       {insight.bodyExercise && (
-        <div className="rounded-2xl bg-white p-5 ring-1 ring-canvas-border">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-secondary">身体练习 · {insight.bodyExercise.title}</p>
+        <div className="rounded-2xl bg-canvas-surface p-5 ring-1 ring-canvas-border">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">身体练习 · {insight.bodyExercise.title}</p>
           <ol className="mt-3 space-y-1.5 text-sm text-ink-secondary">
             {insight.bodyExercise.steps.map((s, i) => (
               <li key={i} className="flex gap-2">
@@ -132,7 +132,7 @@ export function InsightView({
 
       {insight.profileSuggestions && insight.profileSuggestions.length > 0 && (
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand-secondary">画像更新建议（需你确认）</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[color:var(--site-accent)]">画像更新建议（需你确认）</p>
           <div className="space-y-3">
             {insight.profileSuggestions.map((s) => (hasSuggestion(s.id) ? renderSuggestion({
               ...s,
@@ -168,7 +168,7 @@ export function InsightView({
               className={`rounded-full px-3 py-1 text-xs transition ${
                 feedback === "helpful"
                   ? "bg-emerald-100 text-emerald-700 ring-1 ring-emerald-300"
-                  : "bg-white text-ink-secondary ring-1 ring-canvas-border"
+                  : "bg-canvas-surface text-ink-secondary ring-1 ring-canvas-border"
               }`}
               onClick={() => setFeedback("helpful")}
             >
@@ -179,7 +179,7 @@ export function InsightView({
               className={`rounded-full px-3 py-1 text-xs transition ${
                 feedback === "not-helpful"
                   ? "bg-slate-200 text-slate-700 ring-1 ring-slate-300"
-                  : "bg-white text-ink-secondary ring-1 ring-canvas-border"
+                  : "bg-canvas-surface text-ink-secondary ring-1 ring-canvas-border"
               }`}
               onClick={() => setFeedback("not-helpful")}
             >
